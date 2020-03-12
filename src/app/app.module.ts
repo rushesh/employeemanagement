@@ -23,6 +23,10 @@ import { PagenotfoundComponent } from '../app/components/pagenotfound/pagenotfou
 import { ContactusComponent } from '../app/components/contactus/contactus.component';
 import { AboutusComponent } from '../app/components/aboutus/aboutus.component';
 import { MiddlewareComponentComponent } from './components/middleware-component/middleware-component.component';
+import { ToastrModule } from 'ngx-toastr';
+import { AuthComponent } from './components/auth/auth.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
  
 
 @NgModule({
@@ -35,7 +39,10 @@ import { MiddlewareComponentComponent } from './components/middleware-component/
     NavbarComponent,
     PagenotfoundComponent,
     ContactusComponent,
-    MiddlewareComponentComponent
+    MiddlewareComponentComponent,
+    AuthComponent,
+    SignupComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     NotifierModule,
@@ -48,7 +55,12 @@ import { MiddlewareComponentComponent } from './components/middleware-component/
     ModalModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
-    AlertsModule.forRoot()
+    AlertsModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      progressBar: true
+    })
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

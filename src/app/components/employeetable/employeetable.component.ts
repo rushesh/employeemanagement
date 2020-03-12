@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertsService } from 'angular-alert-module';
+import { ToastrService } from 'ngx-toastr';
+
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
@@ -12,7 +13,7 @@ import { first, min } from 'rxjs/operators';
   styleUrls: ['./employeetable.component.css']
 })
 export class EmployeetableComponent implements OnInit {
-  constructor(private router: Router, private Auth: AuthService,private alerts: AlertsService){
+  constructor(private router: Router, private Auth: AuthService,private alerts: ToastrService){
   
   }
   employeeList:any = [];
@@ -64,11 +65,11 @@ export class EmployeetableComponent implements OnInit {
                   });
                 }
               );
-                     this.alerts.setMessage('Employee Deleted Successfully!','success');
+                     this.alerts.success('Employee Deleted Successfully!','success');
 
           }
           else{
-            this.alerts.setMessage('Deletion Failed','error');
+            this.alerts.error('Deletion Failed','error');
           }
         }
         );

@@ -4,21 +4,56 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav ml-auto">
-      
+    <ul class="navbar-nav" >
+
+      <li class="nav-item dropdown"  *ngIf="!isAuthnticated">
+        <button class="btn btn-primary dropdown-toggle" id="navbarDropdownAuth" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          User
+        </button>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          
       <li class="nav-item">
-        <button class="btn btn-primary" routerLink="/create" routerLinkActive="active">Register Employee</button>
+        <button class="dropdown-item" routerLink="/auth" 
+        title="existing user login"
+        routerLinkActive="active">Login</button>
+      </li>
+      <div class="dropdown-divider"></div>
+      <li class="nav-item">
+        <button class="dropdown-item" 
+        title="new user signup"
+        routerLink="/signup" routerLinkActive="active">Sign Up</button>
+      </li>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <button class="btn btn-primary" routerLink="/create" *ngIf="isAuthnticated" routerLinkActive="active">Register Employee</button>
       </li>
       <li class="nav-item">
-        <button class="btn btn-primary" routerLink="/showemployees" routerLinkActive="active">All Employees</button>
-      </li>
-      
-      <li class="nav-item">
-        <button class="btn btn-primary" routerLink="/aboutus" routerLinkActive="active">About Us</button>
-      </li>
-      <li class="nav-item">
-        <button class="btn btn-primary" routerLink="/contactus" routerLinkActive="active">Contact Us</button>
+        <button class="btn btn-primary" routerLink="/showemployees" *ngIf="isAuthnticated" routerLinkActive="active">All Employees</button>
       </li>      
+
+      <li *ngIf="isAuthnticated"  class="nav-item">
+        <button class="btn btn-primary" style="cursor: pointer;" (click)="onLogout()">
+          Logout
+        </button>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+       <li class="nav-item dropdown">
+        <button class="btn btn-primary dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          More
+        </button>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li class="nav-item">
+            <a class="dropdown-item" routerLink="/aboutus" routerLinkActive="active">About Us</a>
+          </li>
+          <div class="dropdown-divider"></div>
+          <li class="nav-item">
+            <a class="dropdown-item" routerLink="/contactus" routerLinkActive="active">Contact Us</a>
+          </li>
+        </div>
+      </li>
     </ul>
   </div>  
 </nav>

@@ -8,16 +8,17 @@ import { MiddlewareComponentComponent } from './components/middleware-component/
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { AuthGuard } from './components/auth/auth.guard';
 
 
 const routes: Routes = [
   {path:'',component:MiddlewareComponentComponent},
-  {path:'create',component: HomeComponent},
+  {path:'create',component: HomeComponent,canActivate: [AuthGuard]},
   
   {path:'auth',component: AuthComponent},
   
   {path:'signup',component: SignupComponent},
-  {path:'showemployees',component:EmployeetableComponent},
+  {path:'showemployees',component:EmployeetableComponent,canActivate: [AuthGuard]},
   {path:'contactus',component:ContactusComponent},
   {path:'aboutus',component:AboutusComponent},
   {path:'**',component:PagenotfoundComponent}

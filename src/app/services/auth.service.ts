@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-// import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +8,12 @@ import { map } from 'rxjs/operators';
 export class AuthService {
 authToken :any;
 user:any;
+url:string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.url = environment.backendurl;
+    this.url = this.url.trim();
+   }
 
   logincheck(user){
     let emailid:string = user.emailid;
@@ -45,7 +48,7 @@ loggedin(){
     let headers = new HttpHeaders();
     headers.append('Content-Type','application/json');
     return this.http.post(
-      'http://localhost:3000/employees/register',
+      this.url+'/register',
       user,
       {headers:headers , responseType : 'json'}
       );
@@ -59,7 +62,7 @@ loggedin(){
     headers.append('Content-Type','application/json');
     
       return this.http.post(
-        'http://localhost:3000/users/authenticate',
+        this.url+'/authenticate',
         user,
         {headers:headers , responseType : 'json'}
         );
@@ -70,14 +73,14 @@ loggedin(){
     let headers = new HttpHeaders();
     headers.append('Content-Type','application/json');
       return this.http.get(
-        'http://localhost:3000/employees/allemployees');
+        this.url+'/allemployees');
   }
 
     deleteSelectedEmployee(emp){
         let headers = new HttpHeaders();
         headers.append('Content-Type','application/json');
         // console.log("Deleting emp ",emp);
-        return this.http.delete('http://localhost:3000/employees/deleteEmployee/'+emp._id);
+        return this.http.delete(this.url+'/deleteEmployee/'+emp._id);
     }
     }
 

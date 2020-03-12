@@ -7,7 +7,6 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { DatePipe } from '@angular/common';
-import { AlertsService } from 'angular-alert-module';
 import * as moment from 'moment';
 
 @Component({
@@ -28,7 +27,7 @@ export class HomeComponent implements OnInit {
   minDate: Date;
     
   
-  constructor(private alerts: AlertsService,public datepipe: DatePipe,private modalService: BsModalService,private router: Router,private formBuilder: FormBuilder, private Auth: AuthService) { }
+  constructor(public datepipe: DatePipe,private modalService: BsModalService,private router: Router,private formBuilder: FormBuilder, private Auth: AuthService) { }
   
   ngOnInit() {
 

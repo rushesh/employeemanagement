@@ -6,7 +6,6 @@ import Swal from 'sweetalert2';
 import { first, min } from 'rxjs/operators';
 
 
-
 @Component({
   selector: 'app-employeetable',
   templateUrl: './employeetable.component.html',
@@ -54,14 +53,18 @@ export class EmployeetableComponent implements OnInit {
           (data : Response)=>{
             if(data.statusText=='success'){
               
-        this.Auth.getAllEmployees().subscribe(
-          (data :Response)=>{
-            // console.log(data);
-            this.employeeList = (data);
-            // console.log(this.employeeList);
-          }
-        );
-              this.alerts.setMessage('Employee Deleted Successfully!','success');
+              this.Auth.getAllEmployees().subscribe(
+                (data :Response)=>{
+                  // console.log(data);
+                  this.employeeList = (data);
+                  // console.log(this.employeeList);
+                  this.employeeList.forEach(element => {
+                    element.doj = new Date(element.doj)
+                    console.log(typeof(element.doj),element.doj)
+                  });
+                }
+              );
+                     this.alerts.setMessage('Employee Deleted Successfully!','success');
 
           }
           else{

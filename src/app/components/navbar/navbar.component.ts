@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
     this.userSub = this.authService.user.subscribe(
       user=>{
         this.isAuthnticated = !!user;
-    console.log(this.isAuthnticated);
+        // console.log(this.isAuthnticated);
       }
     );
   }
